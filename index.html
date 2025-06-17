@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <title>超群私域tc收益计算器</title>
+</head>
+<body style="font-family: sans-serif; padding: 20px;">
+  <h2>超群私域tc收益计算器</h2>
+  <p>超群私域微信号：ck655895</p > <!-- 新增微信号信息 -->
+  
+  <label>目标收益（R）：</label>
+  <input type="number" id="target" value="10"><br><br>
+  
+  <label>累计亏损（L）：</label>
+  <input type="number" id="loss" value="0"><br><br>
+
+  <label>今日赔率（p）：</label>
+  <input type="number" step="0.01" id="odds" value="2.0"><br><br>
+
+  <button onclick="calculate()">计算投注金额</button>
+
+  <h3>建议投注金额：<span id="result">--</span> 元</h3>
+
+  <script>
+    function calculate() {
+      const R = parseFloat(document.getElementById('target').value);
+      const L = parseFloat(document.getElementById('loss').value);
+      const p = parseFloat(document.getElementById('odds').value);
+      if (p <= 1) {
+        document.getElementById('result').textContent = '赔率必须大于1';
+        return;
+      }
+      const x = (R + L) / (p - 1);
+      document.getElementById('result').textContent = x.toFixed(2);
+    }
+  </script>
+</body>
+</html>
